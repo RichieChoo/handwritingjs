@@ -6,8 +6,8 @@ function add(a) {
         b = [...arguments].reduce((p, c) => p + c, b);
         return sum
     }
-    sum.toString = function () { // 重写toSting() 方法
-        return b;
+    sum.toString = function () {
+        return b
     }
 
     return sum.call(this, ...arguments)
@@ -16,4 +16,4 @@ function add(a) {
 const a = add(1)(2)(3)(4)(5)(6)(7)(8)(9);
 console.log(a)
 const b = add(1, 2, 3)(4, 5, 6)(7, 8)(9);
-console.log(b).valueOf()
+console.log(b)
