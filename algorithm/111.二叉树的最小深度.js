@@ -19,9 +19,12 @@
  */
 var minDepth = function (root) {
 	if (!root) return 0;
-	//加上root
+
+	//+1(root)
 	if (!root.left) return minDepth(root.right) + 1;
+	//+1(root)
 	if (!root.right) return minDepth(root.left) + 1;
-	return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+	//+1(root)
+	return Math.min(minDepth(root.left), minDepth(root.right)) +1;
 };
 // @lc code=end
