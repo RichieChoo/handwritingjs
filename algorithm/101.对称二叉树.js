@@ -16,6 +16,7 @@
 /**
  * @param {TreeNode} root
  * @return {boolean}
+ * @description 先判断特殊情况，后续再递归比较左右字是否是镜像
  */
 var isSymmetric = function (root) {
 	if (!root) return true;

@@ -17,6 +17,7 @@
  * @param {number[]} preorder
  * @param {number[]} inorder
  * @return {TreeNode}
+ * @description 从前序中获取root信息，然后在中序找到对应的root信息，需要注意每个节点的前中序都是不一样的
  */
 var buildTree = function (preorder, inorder) {
 	return build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);

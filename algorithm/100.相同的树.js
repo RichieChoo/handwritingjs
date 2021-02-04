@@ -17,6 +17,7 @@
  * @param {TreeNode} p
  * @param {TreeNode} q
  * @return {boolean}
+ * @description 对于每个节点都判断root.val相同，然后递归左右，合并
  */
 var isSameTree = function (p, q) {
 	if (p && q) {

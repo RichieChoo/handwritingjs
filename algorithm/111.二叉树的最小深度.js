@@ -16,6 +16,7 @@
 /**
  * @param {TreeNode} root
  * @return {number}
+ * @description 注意如果root存在，别忘记+1
  */
 var minDepth = function (root) {
 	if (!root) return 0;
