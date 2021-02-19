@@ -17,14 +17,12 @@
  * @param {TreeNode} root
  * @param {number} targetSum
  * @return {boolean}
+ * @description 当diff为0时，假如叶子节点存在，则不满足条件
  */
 var hasPathSum = function (root, targetSum) {
 	if (!root) return false;
-    let diff = targetSum - root.val;
-	if (diff === 0) return true;
-	return (
-		hasPathSum(root.left, targetSum - root.val) ||
-		hasPathSum(root.right, targetSum - root.val)
-	);
+	let diff = targetSum - root.val;
+	if (diff === 0 && !root.left && !root.right) return true;
+	return hasPathSum(root.left, diff) || hasPathSum(root.right, diff);
 };
 // @lc code=end
