@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=116 lang=javascript
+ * @lc app=leetcode.cn id=117 lang=javascript
  *
- * [116] 填充每个节点的下一个右侧节点指针
+ * [117] 填充每个节点的下一个右侧节点指针 II
  */
 
 // @lc code=start
@@ -18,15 +18,27 @@
 /**
  * @param {Node} root
  * @return {Node}
- * @description 前序遍历 左节点next->右节点， 右节点next->null或者root.next的左节点
  */
 var connect = function (root) {
 	if (!root || !root.left) return root;
-	root.left.next = root.right;
-	root.right.next = root.next ? root.next.left : null;
-	connect(root.left);
+	root.left = getNodeNext(root, true);
+	root.left = getNodeNext(root, false);
 	connect(root.right);
+	connect(root.left);
 	return root;
 };
 
+function getNodeNext(root, isLeft) {
+	let res = root.next
+		? root.next.left
+			? root.next.left
+			: root.next.right
+			? root.next.right
+			: null
+		: null;
+	if (isLeft) {
+		return root.right ? root.right : res;
+	}
+	return res;
+}
 // @lc code=end
