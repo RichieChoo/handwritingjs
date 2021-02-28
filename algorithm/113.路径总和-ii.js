@@ -18,8 +18,15 @@
  * @param {number} targetSum
  * @return {number[][]}
  */
-var pathSum = function(root, targetSum) {
-
+var pathSum = function (root, targetSum, path = []) {
+	if (!root) return [];
+	let dif = targetSum - root.val;
+	if (!root.left && !root.right) {
+		return dif === 0 ? [path.concat(root.val)] : [];
+	}
+	return [
+		...pathSum(root.left, dif, path.concat(root.val)),
+		...pathSum(root.right, dif, path.concat(root.val)),
+	];
 };
 // @lc code=end
-

@@ -11,25 +11,29 @@
  */
 var solveNQueens = function (n) {
 	let res = [];
-	function go(board = [], r = 0) {
-		if (r === n) {
-			res.push(board.map(v => ".".repeat(v) + "Q" + ".".repeat(n - v - 1)));
+	backtrack();
+	function backtrack(board = [], row = 0) {
+		if (row === n) {
+			res.push(board.map(c => ".".repeat(c) + "Q" + ".".repeat(n - c - 1)));
 			return;
 		}
-		for (let c = 0; c < n; c++) {
-			if (
-				!board.some(
-					(bc, br) => bc === c || bc === c + r - br || bc === c - r + br,
-				)
-			) {
-				board.push(c);
-				go(board, r + 1);
+		for (let col = 0; col < n; col++) {
+			let c = col;
+			let b = board;
+			let invalid = board.some(
+				(c, r) => c === col || c === col + (row - r) || c === col - (row - r),
+			);
+			if (!invalid) {
+				board.push(col);
+				backtrack(board, row + 1);
 				board.pop();
 			}
 		}
 	}
-	go();
-
 	return res;
 };
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = solveNQueens;
+// @after-stub-for-debug-end

@@ -10,20 +10,15 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-	let m = s.length;
-	if (m === 0) return 0;
+	let m = s.length,
+		visited = [];
 	let dp = new Array(m + 1).fill(1);
 	dp[0] = 0;
-	let visited = [];
 	for (let i = 1; i <= m; i++) {
 		let vIndex = visited.indexOf(s[i - 1]);
-		if (vIndex !== -1) {
-			visited = visited.slice(vIndex+1);
-			dp[i] = Math.max(dp[i], visited.length + 1);
-		} else {
-			dp[i] = Math.max(dp[i], dp[i - 1] + 1);
-		}
+		visited = visited.slice(vIndex + 1);
 		visited.push(s[i - 1]);
+		dp[i] = visited.length;
 	}
 	return Math.max(...dp);
 };

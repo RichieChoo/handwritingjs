@@ -18,8 +18,14 @@
  * @param {number} targetSum
  * @return {boolean}
  */
-var hasPathSum = function(root, targetSum) {
-
+var hasPathSum = function (root, targetSum) {
+	if (!root) return false;
+	let dif = targetSum - root.val;
+	if (!root.left && !root.right && dif === 0) return true;
+	return hasPathSum(root.left, dif) || hasPathSum(root.right, dif);
 };
 // @lc code=end
 
+// @after-stub-for-debug-begin
+module.exports = hasPathSum;
+// @after-stub-for-debug-end
