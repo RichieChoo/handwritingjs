@@ -19,8 +19,19 @@
 var reverseList = function (head) {
 	let pre = null;
 	let cur = head;
-	while (cur) {
-
-    }
+	while (cur !== null) {
+		const next = cur.next;
+		cur.next = pre;
+		pre = cur;
+		cur = next;
+	}
+	return pre;
 };
+// var reverseList = function (head) {
+// 	if (!head || !head.next) return head;
+// 	let res = reverseList(head.next);
+// 	head.next.next = head;
+// 	head.next = null;
+// 	return res;
+// };
 // @lc code=end

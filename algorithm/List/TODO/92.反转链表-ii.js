@@ -19,6 +19,7 @@
  * @return {ListNode}
  */
 var reverseBetween = function(head, left, right) {
+    if(head.next)
 
 };
 // @lc code=end

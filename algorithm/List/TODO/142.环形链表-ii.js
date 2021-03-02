@@ -17,8 +17,14 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var detectCycle = function(head) {
-    
+
+var detectCycle = function (head) {
+	let map = new Map();
+	while (head !== null) {
+		if (map.get(head)) return true;
+		map.set(head, true);
+		head = head.next;
+	}
+	return null;
 };
 // @lc code=end
-
