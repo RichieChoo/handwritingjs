@@ -16,8 +16,14 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var sortList = function(head) {
-
+var sortList = function (head) {
+	let dummy = new ListNode(0);
+	let temp = dummy;
+	function sort(node) {}
+	while (head.next !== null) {
+		temp = temp.next;
+		head = head.next;
+	}
+	return dummy.next;
 };
 // @lc code=end
-
