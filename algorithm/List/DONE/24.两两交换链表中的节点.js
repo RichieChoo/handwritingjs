@@ -16,8 +16,19 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var swapPairs = function(head) {
+var swapPairs = function (head) {
+	if (!head || !head.next) return head;
+	let cur = head;
+	let next = head.next;
+	let nnext = head.next.next;
+	head = next;
+	head.next = cur;
+	head.next.next =swapPairs(nnext) ;
 
+	return head;
 };
-// @lc code=end
 
+/*
+eg:输入：head = [1,2,3,4],输出：[2,1,4,3]
+*/
+// @lc code=end
