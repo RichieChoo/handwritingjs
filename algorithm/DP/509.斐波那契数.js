@@ -11,7 +11,7 @@
  */
 
 //  自上而下
-/* var fib = function (n) {
+var fib = function (n) {
 	let map = new Map();
 
 	function help(n) {
@@ -26,7 +26,7 @@
 		}
 	}
 	return help(n);
-}; */
+};
 
 // 自下而上 dp table
 var fib = function (n) {
@@ -37,5 +37,6 @@ var fib = function (n) {
 	}
 	return dp[n];
 };
+
 
 // @lc code=end
