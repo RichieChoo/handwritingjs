@@ -17,8 +17,8 @@
  * @return {ListNode}
  */
 
-var mergeTwoLists = function (l1, l2) {
-	const emty = new ListNode(0);
+var merge = function (l1, l2) {
+	let emty = new ListNode(0);
 	let cur = emty;
 	while (l1 && l2) {
 		if (l1.val > l2.val) {
@@ -30,18 +30,16 @@ var mergeTwoLists = function (l1, l2) {
 		}
 		cur = cur.next;
 	}
-	//把剩余的接上
 	cur.next = l1 || l2;
 	return emty.next;
 };
-
 var mergeKLists = function (lists) {
 	if (lists.length === 0) return null;
 	while (lists.length > 1) {
-		const node1 = lists.shift();
-		const node2 = lists.shift();
-		const h = mergeTwoLists(node1, node2);
-		lists.push(h);
+		const l1 = lists.shift();
+		const l2 = lists.shift();
+		const m = merge(l1, l2);
+		lists.push(m);
 	}
 	return lists[0];
 };

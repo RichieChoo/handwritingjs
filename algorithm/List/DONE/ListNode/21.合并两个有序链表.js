@@ -18,7 +18,7 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (l1, l2) {
-	const emty = { val: 0, next: null };
+	const emty = new ListNode(0);
 	let cur = emty;
 	while (l1 && l2) {
 		if (l1.val > l2.val) {
@@ -30,7 +30,6 @@ var mergeTwoLists = function (l1, l2) {
 		}
 		cur = cur.next;
 	}
-    //把剩余的接上
 	cur.next = l1 || l2;
 	return emty.next;
 };

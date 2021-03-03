@@ -16,23 +16,21 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-
-var mergeTwoLists = function (l1, l2) {
-	const emty = { val: 0, next: null };
-	let cur = emty;
+var merge = function (l1, l2) {
+	let empty = new ListNode(0);
+	let cur = empty;
 	while (l1 && l2) {
-		if (l1.val > l2.val) {
-			cur.next = l2;
-			l2 = l2.next;
-		} else {
+		if (l2.val > l1.val) {
 			cur.next = l1;
 			l1 = l1.next;
+		} else {
+			cur.next = l2;
+			l2 = l2.next;
 		}
 		cur = cur.next;
 	}
-	//把剩余的接上
 	cur.next = l1 || l2;
-	return emty.next;
+	return empty.next;
 };
 var sortList = function (head) {
 	function sort(head, tail) {
@@ -41,8 +39,8 @@ var sortList = function (head) {
 			head.next = null;
 			return head;
 		}
-		let slow = head,
-			fast = head;
+		let slow = head;
+		let fast = head;
 		while (fast !== tail) {
 			slow = slow.next;
 			fast = fast.next;
@@ -51,7 +49,7 @@ var sortList = function (head) {
 			}
 		}
 		const mid = slow;
-		return mergeTwoLists(sort(head, mid), sort(mid, tail));
+		return merge(sort(head, mid), sort(mid, tail));
 	}
 	return sort(head, null);
 };
