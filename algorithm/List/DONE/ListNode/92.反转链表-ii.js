@@ -18,10 +18,24 @@
  * @param {number} right
  * @return {ListNode}
  */
-var reverseBetween = function(head, left, right) {
-
-
-
+var reverseBetween = function (head, left, right) {
+	// 获取位置
+	let [start, cur, i] = [head, head, 1];
+	while (i < left) {
+		start = cur;
+		cur = cur.next;
+		i++;
+	}
+	let [pre, tail] = [null, cur];
+	while (i <= right) {
+		let next = cur.next;
+		cur.next = pre;
+		pre = cur;
+		cur = next;
+		i++;
+	}
+	start.next = pre;
+	tail.next = cur;
+	return left === 1 ? pre : head;
 };
 // @lc code=end
-
