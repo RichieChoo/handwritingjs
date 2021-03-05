@@ -18,7 +18,6 @@
  * @return {boolean}
  */
 var hasCycle = function (head) {
-	if (!head || !head.next) return false;
 	let map = new Map();
 	while (head) {
 		if (map.get(head)) return true;
@@ -29,15 +28,18 @@ var hasCycle = function (head) {
 };
 
 var hasCycle = function (head) {
-	if (!head || !head.next) return false;
-	let slow = head;
-	let fast = head;
-	while (fast !== null) {
-		if (fast.next === null) return false;
+	let [slow, fast] = [head, head];
+	while (fast && fast.next && fast.next.next) {
 		slow = slow.next;
 		fast = fast.next.next;
-		if (fast === slow) return true;
+		if (fast === slow) {
+			return true;
+		}
 	}
 	return false;
 };
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = hasCycle;
+// @after-stub-for-debug-end
