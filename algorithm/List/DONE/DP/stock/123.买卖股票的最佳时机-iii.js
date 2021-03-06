@@ -20,6 +20,7 @@ var maxProfit = function (prices) {
 	}
 	return sell2;
 };
+
 // @lc code=end
 
 // @after-stub-for-debug-begin
