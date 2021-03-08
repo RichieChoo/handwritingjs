@@ -16,8 +16,8 @@ var searchMatrix = function (matrix, target) {
 	const w = matrix[0].length;
 	function has(startRow, endRow, startCol, endCol) {
 		if (startRow > endRow || startCol > endCol) return false;
-		const midRow = Math.floor((endRow - startRow) / 2);
-		const midCol = Math.floor((endCol - startCol) / 2);
+		const midRow = Math.ceil((endRow - startRow) / 2) + startRow;
+		const midCol = Math.ceil((endCol - startCol) / 2) + startCol;
 		if (matrix[midRow][midCol] === target) return true;
 		if (matrix[midRow][midCol] < target) {
 			return (
