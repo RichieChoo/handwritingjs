@@ -8,50 +8,34 @@
 /**
  * Initialize your data structure here.
  */
-var Trie = function () {
-	this.root = {};
-};
-
-/**
- * Inserts a word into the trie.
- * @param {string} word
- * @return {void}
- */
-Trie.prototype.insert = function (word) {
-	let node = this.root;
-	for (const c of word) {
-		if (node[c] == null) node[c] = {};
-		node = node[c];
+class Trie {
+	constructor() {
+		this.root = {};
 	}
-	node.isWord = true;
-};
-
-Trie.prototype.traverse = function (word) {
-	let node = this.root;
-	for (const c of word) {
-		node = node[c];
-		if (node == null) return null;
+	insert(word) {
+		let node = this.root;
+		for (const char of word) {
+			if (!node[char]) node[char] = {};
+			node = node[char];
+		}
+		node.isWord = true;
 	}
-	return node;
-};
-/**
- * Returns if the word is in the trie.
- * @param {string} word
- * @return {boolean}
- */
-Trie.prototype.search = function (word) {
-	const node = this.traverse(word);
-	return node != null && node.isWord === true;
-};
-
-/**
- * Returns if there is any word in the trie that starts with the given prefix.
- * @param {string} prefix
- * @return {boolean}
- */
-Trie.prototype.startsWith = function (prefix) {
-    return this.traverse(prefix)!=null
-};
+	traverse(word) {
+		let node = this.root;
+		for (const char of word) {
+			node = node[char];
+			if (!node) return false;
+		}
+		return node;
+	}
+	search(word) {
+		const node = this.traverse(word);
+		return node !== false && node.isWord;
+	}
+	startsWith(prefix) {
+		return this.traverse(prefix) !== false;
+	}
+}
 
 /**
  * Your Trie object will be instantiated and called as such:
