@@ -10,20 +10,24 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-	let visited = [];
+	let stack = [];
 	for (let i = 0; i < s.length; i++) {
 		let cur = s.charAt(i);
-		if (cur === "(") {
-			visited.push(")");
-		} else if (cur === "{") {
-			visited.push("}");
-		} else if (cur === "[") {
-			visited.push("]");
-		} else if (cur !== visited.pop()) {
-			return false;
+		switch (cur) {
+			case "(":
+				stack.push(")");
+				break;
+			case "[":
+				stack.push("]");
+				break;
+			case "{":
+				stack.push("}");
+				break;
+			default:
+				if (cur !== stack.pop()) return false;
 		}
 	}
-	return visited.length === 0;
+	return stack.length === 0;
 };
 
 /*
