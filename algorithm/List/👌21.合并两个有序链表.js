@@ -17,8 +17,20 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var mergeTwoLists = function(l1, l2) {
-
+var mergeTwoLists = function (l1, l2) {
+	let empty = new ListNode(0);
+	let cur = empty;
+	while (l1 && l2) {
+		if (l1.val > l2.val) {
+			cur.next = l2;
+			l2 = l2.next;
+		} else {
+			cur.next = l1;
+			l1 = l1.next;
+		}
+		cur = cur.next;
+	}
+	cur.next = l1 || l2;
+	return empty.next;
 };
 // @lc code=end
-
