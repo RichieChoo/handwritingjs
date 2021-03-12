@@ -9,28 +9,26 @@
  * @param {string} s
  * @return {string}
  */
-var decodeString = function (s) {
-	if (!s) return "";
-	let res = s.replace(/\d+\[\w+\]/g, function (v) {
-		const matchAll = [...v.matchAll(/\d+|(?<=\[)\w+(?=\])/g)].filter(Boolean);
-		const [count, word] = matchAll;
-		return word[0].repeat(count[0]);
-	});
-	//嵌套递归处理
-	if (res.match(/\d+\[\w+\]/g)) {
-		return decodeString(res);
-	}
-	return res;
-};
+// var decodeString = function (s) {
+// 	if (!s) return "";
+// 	let res = s.replace(/\d+\[\w+\]/g, function (v) {
+// 		const matchAll = [...v.matchAll(/\d+|(?<=\[)\w+(?=\])/g)].filter(Boolean);
+// 		const [count, word] = matchAll;
+// 		return word[0].repeat(count[0]);
+// 	});
+// 	//嵌套递归处理
+// 	if (res.match(/\d+\[\w+\]/g)) {
+// 		return decodeString(res);
+// 	}
+// 	return res;
+// };
 
 var decodeString = function (s) {
-	if (!s) return "";
 	let numsStack = [];
 	let num = 0;
 	let res = "";
 	let strStack = [];
-	for (let i = 0; i < s.length; i++) {
-		const c = s[i];
+	for (const c of s) {
 		if (!isNaN(c)) {
 			//数字
 			num = num * 10 + Number(c);
