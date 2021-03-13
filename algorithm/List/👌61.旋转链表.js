@@ -17,8 +17,23 @@
  * @param {number} k
  * @return {ListNode}
  */
-var rotateRight = function(head, k) {
-
+var rotateRight = function (head, k) {
+	let empty = new ListNode(0);
+	let slow = empty;
+	let fast = empty;
+	let length = 0;
+	empty.next = head;
+	while (fast.next) {
+		fast = fast.next;
+		length++;
+	}
+	k = k % length;
+	for (let i = 0; i < length - k; i++) {
+		slow = slow.next;
+	}
+	fast.next = empty.next;
+	empty.next = slow.next;
+	slow.next = null;
+	return empty.next;
 };
 // @lc code=end
-
