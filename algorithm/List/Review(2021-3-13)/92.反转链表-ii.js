@@ -24,7 +24,7 @@ var reverseBetween = function (head, left, right) {
 		cur = head,
 		count = 1;
 	while (count < left) {
-        // cur的前一个赋值为start
+		// cur的前一个赋值为start
 		start = cur;
 		cur = cur.next;
 		count++;
