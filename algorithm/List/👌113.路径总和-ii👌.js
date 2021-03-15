@@ -26,7 +26,7 @@ var pathSum = function (root, targetSum, path = []) {
 	}
 	return [
 		...pathSum(root.left, dif, path.concat(root.val)),
-		...pathSum(root.left, dif, path.concat(root.val)),
+		...pathSum(root.right, dif, path.concat(root.val)),
 	];
 };
 // @lc code=end
