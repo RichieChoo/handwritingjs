@@ -11,12 +11,6 @@
  * @return {number}
  */
 var findKthLargest = function (nums, k) {
-	return nums.sort((a, b) => b - a)[k - 1];
-};
-
-//快排
-
-var findKthLargest = function (nums, k) {
 	return quick(nums, 0, nums.length - 1, nums.length - k);
 	function quick(arr, left, right, K) {
 		let index;
@@ -47,12 +41,15 @@ var findKthLargest = function (nums, k) {
 			while (arr[i] < datum) {
 				i++;
 			}
+
 			// 右指针左移
 			while (arr[j] > datum) {
 				j--;
 			}
+
 			// 交换
 			if (i < j) swap(arr, i, j);
+
 			// 当数组中存在重复数据时，即都为datum，但位置不同
 			// 继续递增i，防止死循环
 			if (arr[i] === arr[j] && i !== j) {
@@ -65,4 +62,9 @@ var findKthLargest = function (nums, k) {
 		[arr[i], arr[j]] = [arr[j], arr[i]];
 	}
 };
+
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = findKthLargest;
+// @after-stub-for-debug-end
