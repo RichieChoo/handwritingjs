@@ -26,6 +26,21 @@ var lengthOfLongestSubstring = function (s) {
 	return res;
 };
 
+//dp
+function lengthOfLongestSubstring(s) {
+	let m = s.length,
+		visited = [];
+	let dp = new Array(m + 1).fill(1);
+	dp[0] = 0;
+	for (let i = 1; i <= m; i++) {
+		let vIndex = visited.indexOf(s[i - 1]);
+		visited = visited.slice(vIndex + 1);
+		visited.push(s[i - 1]);
+		dp[i] = visited.length;
+	}
+	return Math.max(...dp);
+}
+
 // @lc code=end
 
 // @after-stub-for-debug-begin

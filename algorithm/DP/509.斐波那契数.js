@@ -38,5 +38,14 @@ var fib = function (n) {
 	return dp[n];
 };
 
+var fib = function (n) {
+	if (n === 0) return 0;
+	let pre = 1,
+		cur = 1;
+	for (let i = 2; i < n; i++) {
+		[pre, cur] = [cur, pre + cur];
+	}
+	return cur;
+};
 
 // @lc code=end
