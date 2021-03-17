@@ -10,8 +10,12 @@
  * @param {number} fee
  * @return {number}
  */
-var maxProfit = function(prices, fee) {
-
+var maxProfit = function (prices, fee) {
+	let [profitOut, profitIn] = [0, -prices[0]];
+	for (const p of prices) {
+		profitOut = Math.max(profitOut, profitIn + p - fee);
+		profitIn = Math.max(profitIn, profitOut - p);
+	}
+	return profitOut;
 };
 // @lc code=end
-

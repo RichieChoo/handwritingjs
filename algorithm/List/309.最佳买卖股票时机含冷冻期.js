@@ -9,8 +9,15 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-
+var maxProfit = function (prices) {
+	let [profitOut, profitIn] = [0, -prices[0]];
+	let freeze = 0;
+	for (const p of prices) {
+		let temp = profitOut;
+		profitOut = Math.max(profitOut, profitIn + p);
+		profitIn = Math.max(profitIn, freeze - p);
+		freeze = temp;
+	}
+	return profitOut;
 };
 // @lc code=end
-
