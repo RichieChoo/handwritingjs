@@ -11,16 +11,16 @@
  */
 var solveSudoku = function (board) {
 	let n = board.length;
-	solve();
-	function solve() {
+	function go() {
 		for (let i = 0; i < n; i++) {
 			for (let j = 0; j < n; j++) {
+                // !=="."即原来有给定数字
 				if (board[i][j] !== ".") continue;
 				for (let c = 1; c <= n; c++) {
 					let char = String(c);
 					if (isValid(i, j, char)) {
 						board[i][j] = char;
-						if (solve()) return true;
+						if (go()) return true;
 					}
 				}
 				board[i][j] = ".";
@@ -29,7 +29,6 @@ var solveSudoku = function (board) {
 		}
 		return true;
 	}
-
 	function isValid(row, col, char) {
 		let blockRow = Math.floor(row / 3) * 3;
 		let blockCol = Math.floor(col / 3) * 3;
@@ -41,6 +40,7 @@ var solveSudoku = function (board) {
 		}
 		return true;
 	}
+	go();
 };
 // @lc code=end
 

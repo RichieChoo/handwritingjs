@@ -17,8 +17,16 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var distributeCoins = function(root) {
-
+var distributeCoins = function (root) {
+	let count = 0;
+	function find(node) {
+		if (!node) return 0;
+		let left = find(node.left);
+		let right = find(node.right);
+		count += Math.abs(left) + Math.abs(right);
+		return left + right + node.val - 1;
+	}
+	find(root);
+	return count;
 };
 // @lc code=end
-
