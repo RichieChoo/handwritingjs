@@ -17,6 +17,13 @@
 			"name": "Launch Big Sum",
 			"skipFiles": ["<node_internals>/**"],
 			"program": "${workspaceFolder}/don't wait anymore/bigIntSum.js"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch Curry Add",
+			"skipFiles": ["<node_internals>/**"],
+			"program": "${workspaceFolder}/don't wait anymore/curryAdd.js"
 		}
 	]
 }
