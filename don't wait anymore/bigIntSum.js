@@ -1,3 +1,7 @@
+/*
+实现 超大数相加，
+*/
+
 function sum(a, b) {
 	let max = Math.max(a.length, b.length) + 1;
 	a = a.padStart(max, "0");
