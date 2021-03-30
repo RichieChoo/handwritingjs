@@ -57,10 +57,9 @@ function mergeSort(arr) {
 
 function quickSort(arr) {
 	function partition(arr, pivot, left, right) {
-		let pIndex = left,
-			pivotValue = arr[pivot];
+		let pIndex = left;
 		for (let i = left; i < right; i++) {
-			if (arr[i] < pivotValue) {
+			if (arr[i] < arr[pivot]) {
 				swap(arr, i, pIndex);
 				pIndex++;
 			}
