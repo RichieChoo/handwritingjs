@@ -33,7 +33,7 @@ var lengthOfLongestSubstring = function (s) {
 		ans = 0;
 	for (let i = 0; i < s.length; ++i) {
 		i != 0 && occ.delete(s[i - 1]);
-		while (right + 1 < n && !occ.has(s[right + 1])) {
+		while (right + 1 < s.length && !occ.has(s[right + 1])) {
 			occ.add(s[right + 1]);
 			++right;
 		}
