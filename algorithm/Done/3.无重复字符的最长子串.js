@@ -27,19 +27,23 @@ var lengthOfLongestSubstring = function (s) {
 	return Math.max(...dp);
 };
 
+
+
 var lengthOfLongestSubstring = function (s) {
-	const occ = new Set();
-	let right = -1,
-		ans = 0;
-	for (let i = 0; i < s.length; ++i) {
-		i != 0 && occ.delete(s[i - 1]);
-		while (right + 1 < s.length && !occ.has(s[right + 1])) {
-			occ.add(s[right + 1]);
-			++right;
+	let visited = new Set();
+	let r = -1,
+		res = 0;
+
+	for (let i = 0; i < s.length; i++) {
+		i !== 0 && visited.delete(s[i - 1]);
+
+		while (r + 1 < s.length && !visited.has(s[r + 1])) {
+			visited.add(s[r + 1]);
+			r++;
 		}
-		ans = Math.max(ans, right - i + 1);
+		res = Math.max(res, r + 1 - i);
 	}
-	return ans;
+	return res;
 };
 // @lc code=end
 
