@@ -3,6 +3,8 @@
 function uniqueArray(arr) {
 	return [...new Set(arr)];
 }
+
+
 function uniqueArray2(arr) {
 	let res = [];
 	for (let i = 0; i < arr.length; i++) {
