@@ -13,14 +13,15 @@
 var compareVersion = function (version1, version2) {
 	let arr1 = version1.split(".");
 	let arr2 = version2.split(".");
-	let max, shortArr;
+	let max = arr1.length,
+		shortArr;
 	if (arr1.length > arr2.length) {
-		max = arr1;
 		shortArr = arr2;
 	} else if (arr1.length < arr2.length) {
-		max = arr2;
+		max = arr2.length;
 		shortArr = arr1;
 	} else shortArr = false;
+
 	shortArr && shortArr.push(...new Array(max - shortArr.length).fill("0"));
 	while (max > 0) {
 		let v1 = arr1.shift();
@@ -38,3 +39,7 @@ var compareVersion = function (version1, version2) {
 	return 0;
 };
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = compareVersion;
+// @after-stub-for-debug-end
