@@ -6,6 +6,14 @@
 	"configurations": [
 
 
+
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch 48Test",
+			"skipFiles": ["<node_internals>/**"],
+			"program": "${workspaceFolder}/don't wait anymore/将48位的时间位图格式化成字符串.js"
+		},
 		{
 			"type": "node",
 			"request": "launch",
