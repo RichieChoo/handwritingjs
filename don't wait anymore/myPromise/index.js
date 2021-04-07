@@ -83,7 +83,7 @@ class MyPromise {
 		return promise2;
 	}
 	static resolve(val) {
-		if (val instanceof MyPromise) return param;
+		if (val instanceof MyPromise) return val;
 		return new MyPromise(resolve => {
 			resolve(val);
 		});

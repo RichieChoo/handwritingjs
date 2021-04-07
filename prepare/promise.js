@@ -16,7 +16,6 @@ class MyPromise {
 		let len = this[type].length;
 		while (len) {
 			this[type].shift()(val);
-			len--;
 		}
 	}
 	resolve = val => {
@@ -30,9 +29,63 @@ class MyPromise {
 		this.handle("rejectedCallbacks", reason);
 	};
 	then(onFulfilled, onRejected) {
-		let resolv;
-		let promise2 = new MyPromise();
+		let promise2 = new MyPromise((resolve, reject) => {
+			let realOnFulfilled =
+				typeof onFulfilled === "function" ? onFulfilled : val => val;
+			let realOnRejected =
+				typeof onRejected === "function"
+					? onRejected
+					: reason => {
+							throw new Error(reaso);
+					  };
+			const fulfilledMicrotask = () => {
+				queueMicrotask(() => {
+					let x = realOnFulfilled(this.value);
+					resolve(x);
+				});
+			};
+			const rejectedMicrotask = () => {
+				queueMicrotask(() => {
+					let x = realOnRejected(this.reason);
+					reject(x);
+				});
+			};
+			if (this.status === PENDING) {
+				this.fulfilledCallbacks.push(fulfilledMicrotask);
+				this.fulfilledCallbacks.push(rejectedMicrotask);
+			} else if (this.status === FULFILLED) {
+				fulfilledMicrotask();
+			} else if (this.status === REJECTED) {
+				rejectedMicrotask();
+			}
+		});
+		return promise2;
 	}
-	static resolve(param) {}
-	static reject(param) {}
+	static resolve(param) {
+		return new Promise(resolve => {
+			resolve(param);
+		});
+	}
+	static reject(param) {
+		return new Promise((resolve, reject) => {
+			reject(param);
+		});
+	}
+	static all(param) {
+		return new Promise((resolve, reject) => {
+			if (params == null || typeof params[Symbol.iterator] !== "function";) {
+				throw new Error("must be iterable");
+				reject("must be iterable");
+			}
+			let count = param.length;
+			let res = [];
+			param.forEach((p, i)=> {
+				p.then(function (x) {
+					res[i] = x;
+				}, reject).then(s{
+					if (--count === 0) resolve(res);
+				});
+			});
+		});
+	}
 }
