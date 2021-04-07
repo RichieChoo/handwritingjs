@@ -92,6 +92,24 @@ class MyPromise {
 		new MyPromise((resolve, reject) => {
 			reject(reason);
 		});
+	static all = arr => {
+		return new MyPromise((resolve, reject) => {
+			if (!Array.isArray(arr)) {
+				throw new Error("is not iterable");
+			}
+			let res = [];
+			let count = 0;
+			arr.forEach(v => {
+				v.then(res => {
+					count++;
+					res.push(res);
+				});
+			});
+			if (res.length === count) {
+				resolve(res);
+			}
+		});
+	};
 }
 
 function resolvePromise(temp, x, resolve, reject) {
