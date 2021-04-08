@@ -15,7 +15,8 @@ class MyPromise {
 		if (!this[type] || !this[type].length) return;
 		let len = this[type].length;
 		while (len) {
-			this[type].shift()(val);
+			let a = this[type].shift();
+			a && a(val);
 		}
 	}
 	resolve = val => {
@@ -36,7 +37,7 @@ class MyPromise {
 				typeof onRejected === "function"
 					? onRejected
 					: reason => {
-							throw new Error(reaso);
+							throw new Error(reason);
 					  };
 			const fulfilledMicrotask = () => {
 				queueMicrotask(() => {
@@ -62,27 +63,27 @@ class MyPromise {
 		return promise2;
 	}
 	static resolve(param) {
-		return new Promise(resolve => {
+		return new MyPromise(resolve => {
 			resolve(param);
 		});
 	}
 	static reject(param) {
-		return new Promise((resolve, reject) => {
+		return new MyPromise((resolve, reject) => {
 			reject(param);
 		});
 	}
-	static all(param) {
-		return new Promise((resolve, reject) => {
-			if (params == null || typeof params[Symbol.iterator] !== "function";) {
+	static all(promises) {
+		return new MyPromise((resolve, reject) => {
+			if (promises == null || typeof promises[Symbol.iterator] !== "function") {
 				throw new Error("must be iterable");
 				reject("must be iterable");
 			}
-			let count = param.length;
+			let count = promises.length;
 			let res = [];
-			param.forEach((p, i)=> {
+			promises.forEach((p, i) => {
 				p.then(function (x) {
 					res[i] = x;
-				}, reject).then(s{
+				}, reject).then(res => {
 					if (--count === 0) resolve(res);
 				});
 			});
