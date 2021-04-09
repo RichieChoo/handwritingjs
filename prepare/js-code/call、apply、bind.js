@@ -27,7 +27,10 @@ Function.prototype.myBind = function (ctx, ...args) {
 	let F = function () {};
 	F.prototype = self.prototype;
 	let res = function () {
-		return self.apply(ctx, args.concat(...arguments));
+		return self.apply(
+			this instanceof F ? this : ctx,
+			args.concat(...arguments),
+		);
 	};
 	res.prototype = new F();
 	return res;
