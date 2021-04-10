@@ -40,7 +40,7 @@
 			"request": "launch",
 			"name": "Launch BigSum",
 			"skipFiles": ["<node_internals>/**"],
-			"program": "${workspaceFolder}/don't wait anymore/bigIntSum.js"
+			"program": "${workspaceFolder}/prepare/js-code/bigIntSum.js"
 		},
 		{
 			"type": "node",
