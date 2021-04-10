@@ -24,7 +24,7 @@ Function.prototype.myApply = function (ctx, args) {
 */
 Function.prototype.myBind = function (ctx, ...args) {
 	let self = this;
-	let F = function () {};
+	function F() {}
 	F.prototype = self.prototype;
 	let res = function () {
 		self.apply(this instanceof F ? this : ctx, args.concat(...arguments));
