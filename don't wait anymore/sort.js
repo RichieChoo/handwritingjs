@@ -56,31 +56,31 @@ function mergeSort(arr) {
 }
 
 function quickSort(arr) {
-    function _quickSort(arr, left, right) {
-        let pIndex;
-        if (left < right) {
-            pIndex = partition(arr, left, right);
-            _quickSort(arr, left, pIndex - 1);
-            _quickSort(arr, pIndex + 1, right);
-        }
-    }
-    function partition(arr, left, right) {
-        let pviot = left,
-            index = pviot + 1;
-        for (let i = index; i <= right; i++) {
-            if (arr[i] < arr[pviot]) {
-                swap(arr, i, index);
-                index++;
-            }
-        }
-        swap(arr, pviot, index - 1);
-        return index - 1;
-    }
-    function swap(arr, i, j) {
-        if (i !== j) {
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-    }
+	function _quickSort(arr, left, right) {
+		let pIndex;
+		if (left < right) {
+			pIndex = partition(arr, left, right);
+			_quickSort(arr, left, pIndex - 1);
+			_quickSort(arr, pIndex + 1, right);
+		}
+	}
+	function partition(arr, left, right) {
+		let pviot = left,
+			index = pviot + 1;
+		for (let i = index; i <= right; i++) {
+			if (arr[i] < arr[pviot]) {
+				swap(arr, i, index);
+				index++;
+			}
+		}
+		swap(arr, pviot, index - 1);
+		return index - 1;
+	}
+	function swap(arr, i, j) {
+		if (i !== j) {
+			[arr[i], arr[j]] = [arr[j], arr[i]];
+		}
+	}
 	return _quickSort(arr, 0, arr.length - 1);
 }
 
@@ -89,8 +89,5 @@ const sortByBubble = bubbleSort(arr.slice());
 const sortBySelection = selectionSort(arr.slice());
 const sortByMerge = mergeSort(arr.slice());
 const sortByQuick = quickSort(arr.slice());
+console.log(sortByQuick);
 console.log("done");
-
-
-
-
