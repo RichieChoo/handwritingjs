@@ -18,8 +18,17 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */
-var getIntersectionNode = function(headA, headB) {
-    
+var getIntersectionNode = function (headA, headB) {
+	let a = headA,
+		b = headB;
+	while (a !== b) {
+		a = a ? a.next : headB;
+		b = b ? b.next : headA;
+	}
+	return a;
 };
 // @lc code=end
 
+// @after-stub-for-debug-begin
+module.exports = getIntersectionNode;
+// @after-stub-for-debug-end
