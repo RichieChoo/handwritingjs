@@ -78,7 +78,53 @@ function quickSort(arr) {
 	quick(arr, 0, arr.length - 1);
 	console.log(arguments.callee.name, arr.toString());
 }
-function shellSort(arr) {}
+function shellSort(arr) {
+	gap = Math.floor(arr.length / 2);
+	while (gap) {
+		for (let i = gap; i < arr.length; i++) {
+			let temp = arr[i],
+				j;
+			for (j = i - gap; j >= 0 && temp < arr[j]; j -= gap) {
+				arr[j + gap] = arr[j];
+			}
+			arr[j + gap] = temp;
+		}
+		gap = Math.floor(gap / 2);
+	}
+	console.log(arguments.callee.name, arr.toString());
+}
+function heapSort(arr) {
+	function maxHeapify(arr, i, size) {
+		let largest = i,
+			l = 2 * i + 1,
+			r = 2 * i + 2; // 左子节点为2i + 1，右子节点为2i + 2
+		// 若子节点比节点大，则标记
+		if (l <= size && arr[l] > arr[largest]) {
+			largest = l;
+		}
+		if (r <= size && arr[r] > arr[largest]) {
+			largest = r;
+		}
+		// 若标记有子节点，则交换父子位置，并递归计算
+		if (largest !== i) {
+			swap(arr, i, largest);
+			maxHeapify(arr, largest, size);
+		}
+	}
+
+	let len = arr.length;
+	if (len <= 1) return arr;
+	// 建堆
+	for (let i = Math.floor(len / 2); i >= 0; i--) {
+		maxHeapify(arr, i, len);
+	}
+	// 堆排序
+	for (let j = 0; j < len; j++) {
+		swap(arr, 0, len - 1 - j);
+		maxHeapify(arr, 0, len - 2 - j);
+	}
+	return arr;
+}
 const arr = [23, 1, 2, 13, 5, 2, 5, 256, 1];
 bubbleSort(arr.slice());
 selectionSort(arr.slice());
@@ -86,4 +132,5 @@ insertSort(arr.slice());
 console.log("mergeSort", mergeSort(arr.slice()).toString());
 quickSort(arr.slice());
 shellSort(arr.slice());
+console.log("heapSort", heapSort(arr.slice()).toString());
 console.log("done");
