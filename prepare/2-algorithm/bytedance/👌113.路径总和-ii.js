@@ -18,8 +18,18 @@
  * @param {number} targetSum
  * @return {number[][]}
  */
-var pathSum = function(root, targetSum) {
-
+var pathSum = function (root, targetSum, path = []) {
+	if (!root) return [];
+	let dif = targetSum - root.val;
+	if (!root.left && !root.right) {
+		return dif === 0 ? [path.concat(root.val)] : [];
+	}
+	let left = pathSum(root.left, dif, path.concat(root.val));
+	let right = pathSum(root.right, dif, path.concat(root.val));
+	return [...left, ...right];
 };
 // @lc code=end
 
+// @after-stub-for-debug-begin
+module.exports = pathSum;
+// @after-stub-for-debug-end
