@@ -1,0 +1,14 @@
+{
+	"name": "2-algorithm",
+	"version": "1.0.0",
+	"description": "script",
+	"main": "get.js",
+	"scripts": {
+		"get": "node get"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"node-fetch": "^2.6.1"
+	}
+}
