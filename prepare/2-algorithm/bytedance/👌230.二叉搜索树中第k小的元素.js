@@ -18,8 +18,19 @@
  * @param {number} k
  * @return {number}
  */
-var kthSmallest = function(root, k) {
-
+var kthSmallest = function (root, k) {
+	let res = 0;
+	function traverse(root) {
+		if (!root) return;
+		traverse(root.left);
+		k--;
+		if (k === 0) {
+			res = root.val;
+			return;
+		}
+		traverse(root.right);
+	}
+	traverse(root);
+	return res;
 };
 // @lc code=end
-

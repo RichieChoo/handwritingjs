@@ -17,8 +17,10 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumNumbers = function(root) {
-
+var sumNumbers = function (root, sum = 0) {
+	if (!root) return 0;
+	let newSum = sum * 10 + root.val;
+	if (!root.left && !root.right) return newSum;
+	return sumNumbers(root.left, newSum) + sumNumbers(root.right, newSum);
 };
 // @lc code=end
-
