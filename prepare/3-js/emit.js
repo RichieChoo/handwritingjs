@@ -25,10 +25,11 @@ class Emit {
 	}
 	once(key, callback) {
 		let self = this;
-		this.on(key, () => {
+		let fn = function () {
 			callback();
-			self.off(key, callback);
-		});
+			self.off(key, fn);
+		};
+		this.on(key, fn);
 	}
 }
 
