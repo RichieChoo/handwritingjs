@@ -28,15 +28,21 @@ var lengthOfLongestSubstring = function (s) {
 	dp[0] = 0;
 	let visited = [];
 	for (let i = 1; i <= s.length; i++) {
-		let index = visited.indexOf(s[i - 1]);
+		let c = s[i - 1];
+		let index = visited.indexOf(c);
 		if (index === -1) {
+			visited.push(c);
 			dp[i] = dp[i - 1] + 1;
 		} else {
 			visited = visited.slice(index + 1);
-			dp[i] = Math.max(dp[i], visited.length + 1);
+			visited.push(c);
+			dp[i] = Math.max(dp[i], visited.length);
 		}
-		visited.push(s[i - 1]);
 	}
 	return Math.max(...dp);
 };
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = lengthOfLongestSubstring;
+// @after-stub-for-debug-end

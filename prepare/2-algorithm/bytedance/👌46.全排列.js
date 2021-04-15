@@ -10,20 +10,21 @@
  * @return {number[][]}
  */
 var permute = function (nums) {
+	let used = {};
 	let res = [];
-	const used = {};
 	function backtrack(cPath = []) {
 		if (cPath.length === nums.length) {
 			res.push(cPath.slice());
 			return;
 		}
-		for (const c of nums) {
-			if (used[c]) continue;
-			cPath.push(c);
-			used[c] = true;
+
+		for (let i = 0; i < nums.length; i++) {
+			if (used[nums[i]]) continue;
+			cPath.push(nums[i]);
+			used[nums[i]] = true;
 			backtrack(cPath);
 			cPath.pop();
-			used[c] = false;
+			used[nums[i]] = false;
 		}
 	}
 	backtrack();
@@ -31,3 +32,7 @@ var permute = function (nums) {
 };
 
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = permute;
+// @after-stub-for-debug-end

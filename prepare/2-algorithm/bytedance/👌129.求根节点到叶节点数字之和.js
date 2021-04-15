@@ -19,8 +19,8 @@
  */
 var sumNumbers = function (root, sum = 0) {
 	if (!root) return 0;
-	let newSum = sum * 10 + root.val;
-	if (!root.left && !root.right) return newSum;
-	return sumNumbers(root.left, newSum) + sumNumbers(root.right, newSum);
+	let sum2 = sum * 10 + root.val;
+	if (!root.left && !root.right) return sum2;
+	return sumNumbers(root.left, sum2) + sumNumbers(root.right, sum2);
 };
 // @lc code=end

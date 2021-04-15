@@ -17,7 +17,8 @@ var merge = function (nums1, m, nums2, n) {
 	m--;
 	n--;
 	while (n >= 0) {
-		nums1[i--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+		nums1[i] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+		i--;
 	}
 };
 // @lc code=end

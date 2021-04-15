@@ -10,10 +10,9 @@
  * @return {number}
  */
 var maxSubArray = function (nums) {
-	let m = nums.length;
-	let dp = new Array(m + 1).fill(-Infinity);
-	for (let i = 1; i <= m; i++) {
-		dp[i] = Math.max(nums[i - 1], dp[i - 1] + nums[i - 1]);
+	let dp = new Array(nums.length + 1).fill(-Infinity);
+	for (let i = 1; i <= nums.length; i++) {
+		dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
 	}
 	return Math.max(...dp);
 };

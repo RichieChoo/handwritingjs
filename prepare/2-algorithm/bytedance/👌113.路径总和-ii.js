@@ -24,9 +24,10 @@ var pathSum = function (root, targetSum, path = []) {
 	if (!root.left && !root.right) {
 		return dif === 0 ? [path.concat(root.val)] : [];
 	}
-	let left = pathSum(root.left, dif, path.concat(root.val));
-	let right = pathSum(root.right, dif, path.concat(root.val));
-	return [...left, ...right];
+	return [
+		...pathSum(root.left, dif, path.concat(root.val)),
+		...pathSum(root.right, dif, path.concat(root.val)),
+	];
 };
 // @lc code=end
 
