@@ -6,9 +6,7 @@ function deepClone(obj) {
 		throw new Error("not a object");
 	}
 	let res = Array.isArray(obj) ? [] : {};
-	for (const p of obj) {
-		res[p];
-	}
+
 	Object.keys(obj).forEach(v => {
 		res[v] = isObject(obj[v]) ? deepClone(obj[v]) : obj[v];
 	});
