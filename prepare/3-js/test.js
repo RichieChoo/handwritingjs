@@ -7,6 +7,7 @@ Function.prototype.myCall = function (ctx, ...args) {
 	delete ctx[fn];
 	return res;
 };
+
 // 实现 apply
 Function.prototype.myApply = function (ctx, args) {
 	ctx = ctx || window;
@@ -16,6 +17,7 @@ Function.prototype.myApply = function (ctx, args) {
 	delete ctx[fn];
 	return res;
 };
+
 // 实现 bind
 Function.prototype.myBind = function (ctx, ...args) {
 	let self = this;
@@ -27,6 +29,7 @@ Function.prototype.myBind = function (ctx, ...args) {
 	res.prototype = new F();
 	return res;
 };
+
 // 实现 new
 function newOperator(c, ...args) {
 	let obj = {};
@@ -34,6 +37,7 @@ function newOperator(c, ...args) {
 	c.call(obj, ...args);
 	return obj;
 }
+
 // 实现 instanceOf
 
 function instanceOf(a, b) {
@@ -46,6 +50,7 @@ function instanceOf(a, b) {
 		return false;
 	}
 }
+
 // 实现 debounce
 
 function debounce(fn, delay) {
@@ -62,6 +67,7 @@ function debounce(fn, delay) {
 		}, delay);
 	};
 }
+
 // 实现 throttle
 function throttle(fn, delay) {
 	let last;
@@ -75,6 +81,7 @@ function throttle(fn, delay) {
 		}
 	};
 }
+
 // 实现 deepClone
 function deepClone(obj) {
 	let res = Array.isArray(obj) ? [] : {};
@@ -83,6 +90,7 @@ function deepClone(obj) {
 	});
 	return res;
 }
+
 // 实现 inherit
 function inherit() {
 	function Parent(name, type) {
@@ -104,6 +112,7 @@ function inherit() {
 	console.log(man.constructor);
 }
 inherit();
+
 // 实现 promise.all
 Promise.all = function (arr) {
 	return new Promise((resolve, reject) => {
@@ -124,7 +133,9 @@ Promise.all = function (arr) {
 		});
 	});
 };
+
 // 实现 promise
+
 // 实现 Emit发布订阅
 
 // 实现 数组去重
@@ -133,6 +144,7 @@ function uniqueArr(arr) {
 	return arr.filter((v, p, array) => array.indexOf(v) === p);
 }
 console.log(uniqueArr([1, 2, 3, 4, 55, 2, 2, 11, 3, 5, 2, 21, 1]));
+
 // 实现 add(1)(2)(3)
 function add() {
 	let b = 0;
@@ -147,7 +159,9 @@ function add() {
 	return sum;
 }
 console.log(add(1)(2)(3)(4, 5).toString());
+
 // 实现 大数相加
+
 // 实现 数组排序
 function quickSort(arr) {
 	function quick(arr, l, r) {
