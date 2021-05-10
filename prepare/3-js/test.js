@@ -116,7 +116,7 @@ inherit();
 // 实现 promise.all
 Promise.all = function (arr) {
 	return new Promise((resolve, reject) => {
-		if (typeof arr[Symbol.iterator] !== "function") {
+		if (arr && typeof arr[Symbol.iterator] !== "function") {
 			throw new Error("arr is not iterable");
 			reject("arr is not iterable");
 		}
